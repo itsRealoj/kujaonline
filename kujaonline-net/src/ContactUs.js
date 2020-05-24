@@ -2,27 +2,30 @@ import React, { Component } from 'react'
 import * as emailjs from 'emailjs-com'
 // import Layout from '../components/layout'
 import { Button, FormFeedback, Form, FormGroup, Label, Input } from 'reactstrap'
+
 class ContactForm extends Component {
-  state = {
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  }
+        state = {
+            name: '',
+            email: '',
+            subject: '',
+            message: '',
+          }
+
 handleSubmit(e) {
     e.preventDefault()
-    const { name, email, subject, message } = this.state
+    const { name, email, subject, message } = this.state;
+    console.log(this.state)
     let templateParams = {
       from_name: email,
-      to_name: '<YOUR_EMAIL_ID>',
+      to_name: 'stephenojwang1040@gmail.com',
       subject: subject,
       message_html: message,
      }
      emailjs.send(
-      'gmail',
-      'template_XXXXXXXX',
-       templateParams,
-      'user_XXXXXXXXXXXXXXXXXXXX'
+        'gmail',
+        'template_srhB7xeV',
+        templateParams,
+         'user_dmLU5w3tDVptS5FdUvsPR',
      )
      this.resetForm()
  }
@@ -43,7 +46,7 @@ render() {
         <div>
           <h1 className="p-heading1">Get in Touch</h1>
           <Form onSubmit={this.handleSubmit.bind(this)}>
-            <FormGroup controlId="formBasicEmail">
+            <FormGroup>
               <Label className="text-muted">Email address</Label>
               <Input
                 type="email"
