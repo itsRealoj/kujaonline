@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import * as emailjs from 'emailjs-com'
-// import Layout from '../components/layout'
-import { Button, FormFeedback, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Form } from 'reactstrap'
 
 class ContactForm extends Component {
         state = {
@@ -17,7 +16,7 @@ handleSubmit(e) {
     console.log(this.state)
     let templateParams = {
       from_name: email,
-      to_name: 'stephenojwang1040@gmail.com',
+      to_name: 'support',
       subject: subject,
       message_html: message,
      }
@@ -27,6 +26,7 @@ handleSubmit(e) {
         templateParams,
          'user_dmLU5w3tDVptS5FdUvsPR',
      )
+     alert('Message sent!')
      this.resetForm()
  }
 resetForm() {
@@ -44,55 +44,14 @@ render() {
     return (
       <>
         <div>
-          <h1 className="p-heading1">Get in Touch</h1>
+            
           <Form onSubmit={this.handleSubmit.bind(this)}>
-            <FormGroup>
-              <Label className="text-muted">Email address</Label>
-              <Input
-                type="email"
-                name="email"
-                value={this.state.email}
-                className="text-primary"
-                onChange={this.handleChange.bind(this, 'email')}
-                placeholder="Enter email"
-              />
-            </FormGroup>
-<FormGroup controlId="formBasicName">
-              <Label className="text-muted">Name</Label>
-              <Input
-                type="text"
-                name="name"
-                value={this.state.name}
-                className="text-primary"
-                onChange={this.handleChange.bind(this, 'name')}
-                placeholder="Name"
-              />
-            </FormGroup>
-<FormGroup controlId="formBasicSubject">
-              <Label className="text-muted">Subject</Label>
-              <Input
-                type="text"
-                name="subject"
-                className="text-primary"
-                value={this.state.subject}
-                onChange={this.handleChange.bind(this, 'subject')}
-                placeholder="Subject"
-              />
-            </FormGroup>
-<FormGroup controlId="formBasicMessage">
-              <Label className="text-muted">Message</Label>
-              <Input
-                type="textarea"
-                name="message"
-                className="text-primary"
-                value={this.state.message}
-                onChange={this.handleChange.bind(this, 'message')}
-              />
-            </FormGroup>
-<Button variant="primary" type="submit">
-              Submit
-            </Button>
+            <input className="input-text" type="email" name="email" value={this.state.email} onChange={this.handleChange.bind(this, 'email')} placeholder="Your Email *" onFocus="if(this.value==this.defaultValue)this.value='';" onBlur="if(this.value=='')this.value=this.defaultValue;"></input>
+            <input className="input-text" type="text" name="name" value={this.state.name} onChange={this.handleChange.bind(this, 'name')} placeholder="Your Name *"  onFocus="if(this.value==this.defaultValue)this.value='';" onBlur="if(this.value=='')this.value=this.defaultValue;"></input>
+            <textarea className="input-text text-area" value={this.state.message} onChange={this.handleChange.bind(this, 'message')} placeholder="Your Message *" onChange={this.handleChange.bind(this, 'message')} cols="0" rows="0" onFocus="if(this.value==this.defaultValue)this.value='';" onBlur="if(this.value=='')this.value=this.defaultValue;">Your Message *</textarea>
+            <input className="input-btn" type="submit" value="SEND MESSAGE"></input>
           </Form>
+          
         </div>
       </>
     )
